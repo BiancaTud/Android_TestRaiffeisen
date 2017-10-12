@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Bianca on 12.10.2017.
  */
 
-public class Results {
+public class User {
 
     @SerializedName("gender")
     private String gender;
@@ -23,6 +23,12 @@ public class Results {
     @SerializedName("phone")
     private String phone;
 
+    @SerializedName("dob")
+    private String dob;
+
+    @SerializedName("registered")
+    private String registered;
+
     @SerializedName("id")
     private Id id;
 
@@ -32,12 +38,14 @@ public class Results {
     @SerializedName("nat")
     private String nat;
 
-    public Results(String gender, Name name, Location location, String email, String phone, Id id, Picture picture) {
+    public User(String gender, Name name, Location location, String email, String phone, String dob, String registered,  Id id, Picture picture) {
         this.gender = gender;
         this.name = name;
         this.location = location;
         this.email = email;
         this.phone = phone;
+        this.dob = dob;
+        this.registered = registered;
         this.id = id;
         this.picture = picture;
     }
@@ -64,5 +72,17 @@ public class Results {
 
     public Picture getPicture() {
         return picture;
+    }
+
+    public String getNat() {
+        return nat;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getRegistered() {
+        return registered;
     }
 }
