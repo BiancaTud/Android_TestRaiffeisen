@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.adonissoft.androidtestraiffeisen.R;
 import com.adonissoft.androidtestraiffeisen.api.model.User;
@@ -17,6 +20,9 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
 
     @BindView(R.id.users_recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.users_progressbar)
+    ProgressBar progressBar;
 
     UsersAdapter adapter;
 
@@ -52,13 +58,13 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
     }
 
     @Override
-    public void showProgress(boolean isFirstProgressLoad) {
-
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideProgress(boolean isFirstProgressLoad) {
-
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -68,8 +74,8 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
     }
 
     @Override
-    public void showError() {
-
+    public void showError(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
 

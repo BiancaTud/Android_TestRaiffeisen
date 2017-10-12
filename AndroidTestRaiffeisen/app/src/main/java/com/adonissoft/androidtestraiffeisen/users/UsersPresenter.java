@@ -20,7 +20,7 @@ public class UsersPresenter implements UsersContract.Presenter{
     private UsersContract.View view;
 
     private static final int STARTING_PAGE_NR = 0;
-    private static final int RESULTS = 100;
+    private static final int RESULTS = 10;
     private static final String SEED = "abc";
     private int pageNr;
     private RaiffeisenApiService apiService;
@@ -34,11 +34,14 @@ public class UsersPresenter implements UsersContract.Presenter{
 
     @Override
     public void getUsers() {
+
+        view.showProgress();
+
         apiService.getUsers(pageNr, RESULTS, SEED,
                 new Callback<ApiResponse>() {
                     @Override
                     public void success(ApiResponse apiResponse, Response response) {
-                        view.hideProgress(pageNr == STARTING_PAGE_NR);
+                        view.hideProgress();
                         List<User> users = apiResponse.getResults();
                         view.updateUsersList(users);
                         pageNr++;
@@ -46,8 +49,8 @@ public class UsersPresenter implements UsersContract.Presenter{
 
                     @Override
                     public void failure(RetrofitError error) {
-                        view.hideProgress(pageNr == STARTING_PAGE_NR);
-                        view.showError();
+                        view.hideProgress();
+                        view.showError(error.getMessage().toString());
                     }
                 });
     }

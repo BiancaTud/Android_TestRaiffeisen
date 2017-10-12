@@ -13,14 +13,13 @@ public class UsersContract {
 
     public interface View {
 
-        void showProgress(boolean isFirstProgressLoad);
+        void showProgress();
 
-        void hideProgress(boolean isFirstProgressLoad);
+        void hideProgress();
 
         void updateUsersList(List<User> users);
 
-
-        void showError();
+        void showError(String error);
     }
 
     public interface Presenter {

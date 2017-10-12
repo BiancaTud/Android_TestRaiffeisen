@@ -87,12 +87,24 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
             vh.userName.setText(currentUser.getName().getFirstName() + " " +  currentUser.getName().getLastName());
         }
 
-        if(currentUser.getNat()!=null){
+        if(currentUser.getDob()!=null && currentUser.getNat()!=null){
             vh.userDetails.setText(currentUser.getNat());
         }
 
         if(currentUser.getRegistered()!=null){
-            vh.userTimestamp.setText(currentUser.getRegistered());
+
+            String[] arrayStringDate = currentUser.getRegistered().split(" ");
+            String timestamp = null;
+            if(arrayStringDate.length > 1){
+                String[] arrayStringTime = arrayStringDate[1].split(":");
+                if(arrayStringTime.length > 2){
+                    timestamp = arrayStringTime[0] + ":" + arrayStringTime[1];
+                }
+            }
+
+            if(timestamp!=null) {
+                vh.userTimestamp.setText(timestamp);
+            }
         }
 
     }
