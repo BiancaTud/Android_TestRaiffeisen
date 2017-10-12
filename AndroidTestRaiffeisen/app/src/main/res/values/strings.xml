@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidTestRaiffeisen</string>
+
+
+    <string name="users">Users</string>
+
 </resources>

@@ -13,7 +13,7 @@ import retrofit.client.OkClient;
 
 public class ApiServiceFactory {
 
-    private static final String BASE_URL = "https://randomuser.me/api/";
+    private static final String BASE_URL = "https://randomuser.me";
 
 
     private ApiServiceFactory() {
