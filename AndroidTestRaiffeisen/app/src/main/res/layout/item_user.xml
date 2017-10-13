@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
         <FrameLayout
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:textColor="@color/color_username"
+                android:textColor="@color/users_years_location"
                 android:textSize="12sp" />
 
 
@@ -54,7 +54,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="11dp"
             android:layout_weight="1"
             android:gravity="right"
             android:orientation="vertical">
@@ -64,11 +64,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@mipmap/ic_user_attach_data"
-                android:drawablePadding="5dp"
+                android:drawablePadding="7dp"
                 android:layout_alignParentRight="true"
                 android:text="12:33"
                 android:textColor="@color/color_username"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
 
             <ImageView

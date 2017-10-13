@@ -13,7 +13,10 @@ import com.hannesdorfmann.annotatedadapter.annotation.ViewType;
 import com.hannesdorfmann.annotatedadapter.support.recyclerview.SupportAnnotatedAdapter;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.OnClick;
@@ -101,7 +104,21 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
         }
 
         if(currentUser.getDob()!=null && currentUser.getNat()!=null){
-            vh.userDetails.setText(currentUser.getNat());
+            String[] arrayStringBirthdate = currentUser.getDob().split(" ");
+            if(arrayStringBirthdate.length > 1){
+                String dob = arrayStringBirthdate[0];
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar dateOfBirth = Calendar.getInstance();
+                try {
+                    dateOfBirth.setTime(sdf.parse(dob));
+                    vh.userDetails.setText(getAge(dateOfBirth) + " " + context.getString(R.string.years) + " " +   context.getString(R.string.from) + " " +   currentUser.getNat());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         if(currentUser.getRegistered()!=null){
@@ -129,8 +146,8 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
                     String username = finalName;
                     String pictureUrl = null, phone=null, email = null, address=null, id=null;
 
-                    if(currentUser.getPicture().getMediumPicUrl()!=null){
-                        pictureUrl = currentUser.getPicture().getMediumPicUrl();
+                    if(currentUser.getPicture().getLargePicUrl()!=null){
+                        pictureUrl = currentUser.getPicture().getLargePicUrl();
                     }
 
                     if(currentUser.getPhone()!=null){
@@ -155,6 +172,31 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
             }
         });
 
+    }
+
+    public static int getAge(Calendar dob) throws Exception {
+        Calendar today = Calendar.getInstance();
+
+        int curYear = today.get(Calendar.YEAR);
+        int dobYear = dob.get(Calendar.YEAR);
+
+        int age = curYear - dobYear;
+
+        // if dob is month or day is behind today's month or day
+        // reduce age by 1
+        int curMonth = today.get(Calendar.MONTH);
+        int dobMonth = dob.get(Calendar.MONTH);
+        if (dobMonth > curMonth) { // this year can't be counted!
+            age--;
+        } else if (dobMonth == curMonth) { // same month? check for day
+            int curDay = today.get(Calendar.DAY_OF_MONTH);
+            int dobDay = dob.get(Calendar.DAY_OF_MONTH);
+            if (dobDay > curDay) { // this year can't be counted!
+                age--;
+            }
+        }
+
+        return age;
     }
 
 

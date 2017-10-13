@@ -9,8 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:clickable="true"
+        card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="4dp">
+        card_view:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,6 +42,9 @@
                     android:id="@+id/tv_field_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:textColor="@android:color/black"
                     android:textSize="13sp" />
 

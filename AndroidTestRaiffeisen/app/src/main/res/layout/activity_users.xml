@@ -35,7 +35,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
-        android:src="@mipmap/ic_pencil" />
+        android:src="@mipmap/ic_mode_edit" />
 
     <ProgressBar
         android:id="@+id/users_progressbar"

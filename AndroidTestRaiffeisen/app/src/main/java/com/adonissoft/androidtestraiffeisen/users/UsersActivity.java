@@ -60,7 +60,7 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
 
     private void setUpActionBar() {
         toolbar.setTitle(getResources().getString(R.string.users));
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(),R.mipmap.ic_search);
+        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_search);
         toolbar.setOverflowIcon(drawable);
         Drawable drawableHome = ContextCompat.getDrawable(getApplicationContext(),R.mipmap.ic_menu);
         toolbar.setNavigationIcon(drawableHome);

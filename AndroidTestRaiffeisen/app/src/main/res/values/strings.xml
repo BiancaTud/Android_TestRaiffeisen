@@ -2,9 +2,12 @@
     <string name="app_name">AndroidTestRaiffeisen</string>
 
     <string name="users">Users</string>
+    <string name="user_details">User Details</string>
     <string name="phone">Phone</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
+    <string name="years">years</string>
+    <string name="from">from</string>
 
 
 </resources>

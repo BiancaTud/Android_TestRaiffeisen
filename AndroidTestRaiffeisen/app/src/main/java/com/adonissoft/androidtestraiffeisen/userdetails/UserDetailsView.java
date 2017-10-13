@@ -3,8 +3,11 @@ package com.adonissoft.androidtestraiffeisen.userdetails;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +24,9 @@ public class UserDetailsView extends LinearLayout {
 
     private Context context;
 
+    @BindView(R.id.card_view)
+    CardView cardView;
+
     @BindView(R.id.tv_field_title)
     TextView tvFieldTitle;
 
@@ -29,6 +35,7 @@ public class UserDetailsView extends LinearLayout {
 
 
     private String fieldTitle;
+    UserDetailsClickListener userDetailsClickListener;
 
 
     public UserDetailsView(Context context) {
@@ -60,6 +67,20 @@ public class UserDetailsView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.item_user_details, this, true);
         ButterKnife.bind(this);
+
+        cardView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if(userDetailsClickListener!=null){
+                    userDetailsClickListener.onUserDetailsClicked(tvFieldContent.getText().toString());
+                }
+            }
+        });
+    }
+
+    public void setUserDetailsClickListener(UserDetailsClickListener userDetailsClickListener){
+        this.userDetailsClickListener = userDetailsClickListener;
     }
 
 
@@ -72,4 +93,9 @@ public class UserDetailsView extends LinearLayout {
         tvFieldContent.setText(content);
 
     }
+
+    public interface UserDetailsClickListener{
+        void onUserDetailsClicked(String details);
+    }
+
 }
