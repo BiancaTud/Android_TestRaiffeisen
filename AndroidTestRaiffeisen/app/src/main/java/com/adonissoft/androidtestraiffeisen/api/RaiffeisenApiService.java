@@ -4,17 +4,13 @@ import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
 public interface RaiffeisenApiService {
 
 
     @GET("/api")
     public void getUsers(@Query("page") int page,
-                             @Query("results") int results,
-                             @Query("seed") String seed,
-                             Callback<ApiResponse> response);
+                         @Query("results") int results,
+                         @Query("seed") String seed,
+                         Callback<ApiResponse> response);
 
 }

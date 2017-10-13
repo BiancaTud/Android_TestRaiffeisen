@@ -4,10 +4,6 @@ import com.adonissoft.androidtestraiffeisen.api.model.User;
 
 import java.util.List;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
 public class UsersContract {
 
 

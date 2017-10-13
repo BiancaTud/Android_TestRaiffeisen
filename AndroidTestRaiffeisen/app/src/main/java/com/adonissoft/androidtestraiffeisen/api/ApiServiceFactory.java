@@ -7,10 +7,6 @@ import com.squareup.okhttp.OkHttpClient;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
 public class ApiServiceFactory {
 
     private static final String BASE_URL = "https://randomuser.me";

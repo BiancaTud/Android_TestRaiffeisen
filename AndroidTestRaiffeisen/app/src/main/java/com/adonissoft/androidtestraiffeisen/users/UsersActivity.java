@@ -39,7 +39,7 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
 
     private UsersContract.Presenter presenter;
 
-    private static final int MAX_PAGES = 3;
+    private static final int MAX_PAGES = 5;
     public static final String USER_KEY = "user_key";
 
     private boolean userScrolled;
@@ -62,7 +62,7 @@ public class UsersActivity extends AppCompatActivity implements UsersContract.Vi
         toolbar.setTitle(getResources().getString(R.string.users));
         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_search);
         toolbar.setOverflowIcon(drawable);
-        Drawable drawableHome = ContextCompat.getDrawable(getApplicationContext(),R.mipmap.ic_menu);
+        Drawable drawableHome = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_menu);
         toolbar.setNavigationIcon(drawableHome);
         setSupportActionBar(toolbar);
     }

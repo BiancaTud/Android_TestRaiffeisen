@@ -4,11 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
-public class User{
+public class User {
 
     @SerializedName("name")
     private Name name;
@@ -37,7 +33,7 @@ public class User{
     @SerializedName("nat")
     private String nat;
 
-    public User( Name name, Location location, String email, String phone, String dob, String registered,  Id id, Picture picture) {
+    public User(Name name, Location location, String email, String phone, String dob, String registered, Id id, Picture picture, String nat) {
         this.name = name;
         this.location = location;
         this.email = email;
@@ -46,6 +42,7 @@ public class User{
         this.registered = registered;
         this.id = id;
         this.picture = picture;
+        this.nat = nat;
     }
 
     public Name getName() {

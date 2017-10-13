@@ -62,7 +62,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_details);
         ButterKnife.bind(this);
 
-        UserDetails currentUser  =null;
+        UserDetails currentUser = null;
 
         setUpActionBar();
 
@@ -71,13 +71,13 @@ public class UserDetailsActivity extends AppCompatActivity {
             currentUser = (UserDetails) getIntent().getSerializableExtra(USER_KEY);
         }
 
-        if(currentUser!=null){
+        if (currentUser != null) {
             setUpViews(currentUser);
         }
     }
 
     private void setUpActionBar() {
-        toolbar.setTitle(getResources().getString(R.string.user_details));
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
     }
 
@@ -93,7 +93,6 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void setUpViews(final UserDetails currentUser) {
@@ -119,7 +118,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         userDetailsPhoneView.setUserDetailsClickListener(new UserDetailsView.UserDetailsClickListener() {
             @Override
             public void onUserDetailsClicked(String details) {
-                startActivity( new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + details)));
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + details)));
             }
         });
 
@@ -155,9 +154,6 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-
-            float scaleFactor = detector.getScaleFactor();
-
 
             return true;
         }

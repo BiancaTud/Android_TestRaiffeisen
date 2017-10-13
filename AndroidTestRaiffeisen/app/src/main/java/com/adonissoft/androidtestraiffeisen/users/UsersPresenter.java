@@ -11,11 +11,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
-public class UsersPresenter implements UsersContract.Presenter{
+public class UsersPresenter implements UsersContract.Presenter {
 
     private UsersContract.View view;
 
@@ -26,7 +22,7 @@ public class UsersPresenter implements UsersContract.Presenter{
     private RaiffeisenApiService apiService;
 
 
-    public UsersPresenter(UsersContract.View v ) {
+    public UsersPresenter(UsersContract.View v) {
         view = v;
         pageNr = STARTING_PAGE_NR;
         apiService = ApiServiceFactory.createRaiffeisenApiService();

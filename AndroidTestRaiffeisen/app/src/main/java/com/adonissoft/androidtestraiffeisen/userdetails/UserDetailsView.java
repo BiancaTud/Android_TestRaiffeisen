@@ -16,13 +16,8 @@ import com.adonissoft.androidtestraiffeisen.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Bianca on 10/12/2017.
- */
 
 public class UserDetailsView extends LinearLayout {
-
-    private Context context;
 
     @BindView(R.id.card_view)
     CardView cardView;
@@ -58,7 +53,7 @@ public class UserDetailsView extends LinearLayout {
 
         init(context);
 
-        if(fieldTitle!=null){
+        if (fieldTitle != null) {
             setFieldTitle(fieldTitle);
         }
     }
@@ -68,33 +63,33 @@ public class UserDetailsView extends LinearLayout {
         inflater.inflate(R.layout.item_user_details, this, true);
         ButterKnife.bind(this);
 
-        cardView.setOnClickListener(new View.OnClickListener(){
+        cardView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(userDetailsClickListener!=null){
+                if (userDetailsClickListener != null) {
                     userDetailsClickListener.onUserDetailsClicked(tvFieldContent.getText().toString());
                 }
             }
         });
     }
 
-    public void setUserDetailsClickListener(UserDetailsClickListener userDetailsClickListener){
+    public void setUserDetailsClickListener(UserDetailsClickListener userDetailsClickListener) {
         this.userDetailsClickListener = userDetailsClickListener;
     }
 
 
-    public void setFieldTitle(String title){
+    public void setFieldTitle(String title) {
         tvFieldTitle.setText(title);
 
     }
 
-    public void setFieldContent(String content){
+    public void setFieldContent(String content) {
         tvFieldContent.setText(content);
 
     }
 
-    public interface UserDetailsClickListener{
+    public interface UserDetailsClickListener {
         void onUserDetailsClicked(String details);
     }
 

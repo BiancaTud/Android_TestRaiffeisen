@@ -2,10 +2,6 @@ package com.adonissoft.androidtestraiffeisen.api.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Bianca on 10/13/2017.
- */
-
 public class UserDetails implements Serializable {
 
     private String name;
@@ -20,7 +16,7 @@ public class UserDetails implements Serializable {
 
     private String pictureUrl;
 
-    public UserDetails( String name, String phone, String email, String address, String id, String pictureUrl) {
+    public UserDetails(String name, String phone, String email, String address, String id, String pictureUrl) {
         this.name = name;
         this.email = email;
         this.phone = phone;

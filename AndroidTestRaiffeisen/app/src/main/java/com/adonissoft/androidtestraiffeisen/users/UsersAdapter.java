@@ -2,6 +2,7 @@ package com.adonissoft.androidtestraiffeisen.users;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,15 +23,13 @@ import java.util.List;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by Bianca on 12.10.2017.
- */
-
-public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapterBinder{
+public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapterBinder {
 
     List<User> listAccounts;
     Context context;
     UserClickListener userClickListener;
+
+    private static String flagUrl = "http://www.geognos.com/api/en/countries/flag/";
 
     @ViewType(
             layout = R.layout.item_user,
@@ -40,12 +39,12 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
                             @ViewField(id = R.id.tv_user_name, type = TextView.class, name = "userName"),
                             @ViewField(id = R.id.tv_user_details, type = TextView.class, name = "userDetails"),
                             @ViewField(id = R.id.tv_user_timestamp, type = TextView.class, name = "userTimestamp"),
+                            @ViewField(id = R.id.iv_user_flag, type = ImageView.class, name = "userFlag"),
                             @ViewField(id = R.id.user_layout, type = LinearLayout.class, name = "userLayout")
 
                     }
     )
     public final int userPager = 0;
-
 
 
     public UsersAdapter(Context context) {
@@ -54,7 +53,7 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
         listAccounts = new ArrayList<>();
     }
 
-    public void setUserClickListener(UserClickListener userClickListener){
+    public void setUserClickListener(UserClickListener userClickListener) {
         this.userClickListener = userClickListener;
     }
 
@@ -94,24 +93,27 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
 
         final User currentUser = listAccounts.get(position);
 
-        if (currentUser.getPicture().getThumbnailPicUrl()!=null)
+        if (currentUser.getPicture().getThumbnailPicUrl() != null)
             Picasso.with(context).load(currentUser.getPicture().getThumbnailPicUrl()).placeholder(R.mipmap.ic_placeholder).into(vh.userPic);
 
-        if(currentUser.getName()!=null){
-            name = currentUser.getName().getFirstName().substring(0,1).toUpperCase() + currentUser.getName().getFirstName().substring(1) +
-                    " " +  currentUser.getName().getLastName().substring(0,1).toUpperCase() + currentUser.getName().getLastName().substring(1);
+        if (currentUser.getName() != null) {
+            name = currentUser.getName().getFirstName().substring(0, 1).toUpperCase() + currentUser.getName().getFirstName().substring(1) +
+                    " " + currentUser.getName().getLastName().substring(0, 1).toUpperCase() + currentUser.getName().getLastName().substring(1);
             vh.userName.setText(name);
         }
 
-        if(currentUser.getDob()!=null && currentUser.getNat()!=null){
+        if (currentUser.getDob() != null && currentUser.getNat() != null) {
             String[] arrayStringBirthdate = currentUser.getDob().split(" ");
-            if(arrayStringBirthdate.length > 1){
+            if (arrayStringBirthdate.length > 1) {
                 String dob = arrayStringBirthdate[0];
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar dateOfBirth = Calendar.getInstance();
                 try {
                     dateOfBirth.setTime(sdf.parse(dob));
-                    vh.userDetails.setText(getAge(dateOfBirth) + " " + context.getString(R.string.years) + " " +   context.getString(R.string.from) + " " +   currentUser.getNat());
+                    vh.userDetails.setText(getAge(dateOfBirth) + " " + context.getString(R.string.years) + " " + context.getString(R.string.from) + " ");
+
+                    Picasso.with(context).load(flagUrl + currentUser.getNat() + ".png").into(vh.userFlag);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -121,18 +123,18 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
 
         }
 
-        if(currentUser.getRegistered()!=null){
+        if (currentUser.getRegistered() != null) {
 
             String[] arrayStringDate = currentUser.getRegistered().split(" ");
             String timestamp = null;
-            if(arrayStringDate.length > 1){
+            if (arrayStringDate.length > 1) {
                 String[] arrayStringTime = arrayStringDate[1].split(":");
-                if(arrayStringTime.length > 2){
+                if (arrayStringTime.length > 2) {
                     timestamp = arrayStringTime[0] + ":" + arrayStringTime[1];
                 }
             }
 
-            if(timestamp!=null) {
+            if (timestamp != null) {
                 vh.userTimestamp.setText(timestamp);
             }
         }
@@ -141,29 +143,29 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
         vh.userLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userClickListener!=null){
+                if (userClickListener != null) {
 
                     String username = finalName;
-                    String pictureUrl = null, phone=null, email = null, address=null, id=null;
+                    String pictureUrl = null, phone = null, email = null, address = null, id = null;
 
-                    if(currentUser.getPicture().getLargePicUrl()!=null){
+                    if (currentUser.getPicture().getLargePicUrl() != null) {
                         pictureUrl = currentUser.getPicture().getLargePicUrl();
                     }
 
-                    if(currentUser.getPhone()!=null){
+                    if (currentUser.getPhone() != null) {
                         phone = currentUser.getPhone();
                     }
 
-                    if(currentUser.getEmail()!=null){
+                    if (currentUser.getEmail() != null) {
                         email = currentUser.getEmail();
                     }
 
-                    if(currentUser.getLocation()!=null){
-                        address = currentUser.getLocation().getCity()+ ", " + currentUser.getLocation().getStreet();
+                    if (currentUser.getLocation() != null) {
+                        address = currentUser.getLocation().getCity() + ", " + currentUser.getLocation().getStreet();
                     }
 
-                    if(currentUser.getId()!=null){
-                        id = "ID: "+ currentUser.getId().getName() + " " + currentUser.getId().getValue();
+                    if (currentUser.getId() != null) {
+                        id = "ID: " + currentUser.getId().getName() + " " + currentUser.getId().getValue();
                     }
 
                     UserDetails userDetails = new UserDetails(username, phone, email, address, id, pictureUrl);
@@ -182,16 +184,14 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
 
         int age = curYear - dobYear;
 
-        // if dob is month or day is behind today's month or day
-        // reduce age by 1
         int curMonth = today.get(Calendar.MONTH);
         int dobMonth = dob.get(Calendar.MONTH);
-        if (dobMonth > curMonth) { // this year can't be counted!
+        if (dobMonth > curMonth) {
             age--;
-        } else if (dobMonth == curMonth) { // same month? check for day
+        } else if (dobMonth == curMonth) {
             int curDay = today.get(Calendar.DAY_OF_MONTH);
             int dobDay = dob.get(Calendar.DAY_OF_MONTH);
-            if (dobDay > curDay) { // this year can't be counted!
+            if (dobDay > curDay) {
                 age--;
             }
         }
@@ -200,9 +200,7 @@ public class UsersAdapter extends SupportAnnotatedAdapter implements UsersAdapte
     }
 
 
-
-
-    public interface UserClickListener{
+    public interface UserClickListener {
         void onUserClicked(UserDetails user);
     }
 }
