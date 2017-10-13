@@ -9,4 +9,10 @@
     <color name="color_user_details">#868686</color>
 
     <color name="user_delimiter">#c6c6c6</color>
+
+    <color name="user_details_colorPrimary">#1897a6</color>
+    <color name="user_details_colorPrimaryDark">#0d6063</color>
+
+    <color name="user_details_field">#777777</color>
+
 </resources>

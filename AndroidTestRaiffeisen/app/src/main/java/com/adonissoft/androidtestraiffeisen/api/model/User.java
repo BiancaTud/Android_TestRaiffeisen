@@ -2,14 +2,13 @@ package com.adonissoft.androidtestraiffeisen.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Bianca on 12.10.2017.
  */
 
-public class User {
-
-    @SerializedName("gender")
-    private String gender;
+public class User{
 
     @SerializedName("name")
     private Name name;
@@ -38,8 +37,7 @@ public class User {
     @SerializedName("nat")
     private String nat;
 
-    public User(String gender, Name name, Location location, String email, String phone, String dob, String registered,  Id id, Picture picture) {
-        this.gender = gender;
+    public User( Name name, Location location, String email, String phone, String dob, String registered,  Id id, Picture picture) {
         this.name = name;
         this.location = location;
         this.email = email;
@@ -48,10 +46,6 @@ public class User {
         this.registered = registered;
         this.id = id;
         this.picture = picture;
-    }
-
-    public String getGender() {
-        return gender;
     }
 
     public Name getName() {
@@ -84,5 +78,9 @@ public class User {
 
     public String getRegistered() {
         return registered;
+    }
+
+    public Id getId() {
+        return id;
     }
 }

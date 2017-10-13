@@ -1,9 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsActivity">
+    android:orientation="vertical"
+    tools:context="com.adonissoft.androidtestraiffeisen.users.UsersActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/user_details_colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/user_details_colorPrimary">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_pic"
+            android:layout_width="111dp"
+            android:layout_height="111dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/ic_placeholder"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:textSize="36sp"
+            android:gravity="center"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        android:layout_margin="9dp">
+
+        <com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView
+            android:id="@+id/field_user_phone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_marginBottom="9dp"
+            app:field_name="@string/phone"></com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView>
+
+        <com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView
+            android:id="@+id/field_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_marginBottom="9dp"
+            app:field_name="@string/email"></com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView>
+
+        <com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView
+            android:id="@+id/field_user_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:field_name="@string/address"></com.adonissoft.androidtestraiffeisen.userdetails.UserDetailsView>
+
+        <TextView
+            android:id="@+id/tv_user_id"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_username"
+            android:textSize="13sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
